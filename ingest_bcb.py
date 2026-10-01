@@ -104,8 +104,8 @@ def main() -> None:
             salvar_no_s3(serie, dados)
         except requests.HTTPError as exc:
             logger.error("Falha ao buscar série %s: %s", serie.nome, exc)
-        except Exception as exc:  # noqa: BLE001 - log amplo para um script de ingestão simples
-            logger.exception("Erro inesperado processando série %s: %s", serie.nome, exc)
+        except Exception:
+            logger.exception("Erro inesperado processando série %s", serie.nome)
 
 
 if __name__ == "__main__":
