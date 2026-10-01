@@ -1,0 +1,19 @@
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/terraform.tfvars
+terraform/.terraform.lock.hcl
+
+# Variáveis de ambiente / segredos
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Dados locais de teste
+*.parquet
+dados_locais/

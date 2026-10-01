@@ -1,0 +1,24 @@
+services:
+  # Serviço de ingestão: busca os dados na API do BCB e grava no S3 (bronze)
+  ingest:
+    build: .
+    image: bcb-pipeline:latest
+    container_name: bcb-ingest
+    env_file:
+      - .env
+    volumes:
+      # Reaproveita as credenciais já configuradas na sua máquina (aws configure),
+      # em vez de duplicá-las dentro do container
+      - ~/.aws:/root/.aws:ro
+    command: ["python", "ingest_bcb.py"]
+
+  # Serviço de transformação: roda o job PySpark (bronze -> silver)
+  transform:
+    build: .
+    image: bcb-pipeline:latest
+    container_name: bcb-transform
+    env_file:
+      - .env
+    volumes:
+      - ~/.aws:/root/.aws:ro
+    command: ["python", "transform_silver.py"]
