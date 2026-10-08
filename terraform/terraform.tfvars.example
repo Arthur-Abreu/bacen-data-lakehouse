@@ -1,0 +1,6 @@
+# Copie para terraform.tfvars e preencha.
+# O nome do bucket precisa ser único globalmente na AWS.
+
+bucket_name = "seu-nome-bcb-data-lake"
+aws_region  = "us-east-1"
+ambiente    = "dev"
